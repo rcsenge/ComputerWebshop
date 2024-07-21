@@ -10,11 +10,11 @@ public class ConfigManager {
     static {
         try (InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
-                throw new IOException("Unable to find config.properties");
+                throw new MyRuntimeException("Unable to find config.properties");
             }
             properties.load(input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading config.properties");
         }
     }
 
